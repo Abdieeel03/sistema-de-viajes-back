@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
     if (!email || !password) return res.status(400).json({ message: 'Faltan datos' });
 
     const user = await Usuario.findOne({ email });
-    if (!user) return res.status(400).json({ message: 'Usuario no encontrado' });
+    if (!user) return res.status(400).json({ message: 'Credenciales inválidas' });
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(400).json({ message: 'Credenciales inválidas' });
